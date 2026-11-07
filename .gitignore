@@ -1,0 +1,20 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Temporary archives and downloads
+*.tar.gz
+*.tgz
+*.zip
+*.deb
+*.rpm
+
+# Staging directories
+tmp/
+temp/
+.version
+
+# OS metadata
+.DS_Store
+Thumbs.db
