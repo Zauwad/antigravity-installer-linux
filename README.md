@@ -178,6 +178,35 @@ Remove binaries, opt directories, icons, desktop shortcuts, and launcher symlink
 
 ---
 
+## Multi-Account Setup (Second Instance)
+
+Run two separate Google Pro accounts side-by-side simultaneously (two independent IDE instances and two independent Desktop Application instances) with zero account crosstalk, zero shared storage, and independent dock tabs:
+
+```bash
+./setup-secondary.sh
+```
+
+### What this configures:
+- **Standalone Second Engine**: Dedicated directories (`~/.local/opt/antigravity2` and `~/.local/opt/antigravity-ide2`) with their own native package identities (`antigravity2` and `antigravity-ide2`).
+- **Independent Native Dock & WMClass**: Clean native Wayland `app_id` mapping (`StartupWMClass=antigravity2` and `StartupWMClass=antigravity-ide2`) so GNOME Shell and Wayland compositors treat both instances as distinct applications without tab grouping.
+- **Isolated User Storage & Cookies**:
+  - Desktop: `~/.config/Antigravity2` and `~/.gemini/antigravity2`
+  - IDE: `~/.config/Antigravity IDE 2` and `~/.antigravity-ide2`
+- **Isolated Token Storage**: The secondary language server uses an isolated file-based token storage under `~/.gemini/antigravity2`, ensuring Account 2 never collides with or overwrites Account 1 in GNOME Keyring.
+- **Distinct Launchers & Shortcuts**:
+  - Desktop Application: `antigravity2` (Menu: *Antigravity 2*)
+  - IDE: `antigravity-ide2` / `agy-ide2` (Menu: *Antigravity IDE 2*)
+- **Badged Icons**: Generates visually distinctive icons badged with a crisp blue "2" badge for instant recognition in your dock and Alt+Tab switcher.
+- **Seamless Synchronization**: Running `./update.sh` automatically updates both Primary and Second instances.
+
+To check status or remove the second instance:
+```bash
+./setup-secondary.sh status
+./setup-secondary.sh uninstall
+```
+
+---
+
 ## Command-Line Flags
 
 | Flag | Description |
